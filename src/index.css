@@ -12,9 +12,10 @@ code {
     monospace;
 }
 
-/* .carousel{
-  border:2px solid rebeccapurple;
-} */
+.carousel-img{
+  /* border:2px solid rebeccapurple; */
+  text-align: center;
+} 
 
 .slick-slide img {
   height: 230px;
