@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Steps from "./Steps";
 import person from "../Images/person.jpeg";
-import Container from '@material-ui/core/Container';
+import Container from "@material-ui/core/Container";
+import { slice, concat } from "lodash";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,8 +18,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Card(props) {
-  const classes = useStyles();
-  const renderCard = props.data.map((data) => {
+  const dataLength = props.data.length;
+  const limitedData = props.limit;
+
+  const [showMore, setShowMore] = useState(true);
+  const [list, setList] = useState(slice(props.data, 0, limitedData));
+  const [index, setIndex] = useState(limitedData);
+
+  const loadMore = () => {
+    const newIndex = index + limitedData;
+    const newShowMore = newIndex < dataLength - 1;
+    const newList = concat(list, slice(props.data, index, newIndex));
+    setIndex(newIndex);
+    setList(newList);
+    setShowMore(newShowMore);
+  };
+
+  const renderCard = list.map((data) => {
     return (
       <>
         {console.log("Hey", data.fields.name)}
@@ -54,13 +71,14 @@ export default function Card(props) {
                     </p>
                   </div>
                   <div className="col-sm-6">
-                    <Steps status={data.fields.status}/>
+                    <Steps status={data.fields.status} />
                   </div>
                 </div>
               </div>
             </div>
             <div>
-              <p className="card-description"
+              <p
+                className="card-description"
                 style={{
                   fontWeight: "lighter",
                 }}
@@ -69,8 +87,16 @@ export default function Card(props) {
                 service is about to start
               </p>
 
-              <p style={{fontWeight:"bold"}}>{data.fields.scheduled_at}</p>
-              <p style={{color:"teal",fontWeight:"bold",marginTop:"-15px"}}>{data.fields.address}</p>
+              <p style={{ fontWeight: "bold" }}>{data.fields.scheduled_at}</p>
+              <p
+                style={{
+                  color: "teal",
+                  fontWeight: "bold",
+                  marginTop: "-15px",
+                }}
+              >
+                {data.fields.address}
+              </p>
             </div>
           </div>
         </Paper>
@@ -78,5 +104,17 @@ export default function Card(props) {
     );
   });
 
-  return <Container maxWidth="sm">{renderCard}</Container>;
+  return (
+    <>
+      <Container maxWidth="sm">{renderCard}</Container>
+      <div style={{ textAlign: "center" }}>
+        {showMore && (
+          <Button variant="contained" color="primary" onClick={loadMore}>
+            {" "}
+            Load More{" "}
+          </Button>
+        )}
+      </div>
+    </>
+  );
 }

@@ -32,7 +32,7 @@ class App extends React.Component {
               <Route
                 exact
                 path="/request"
-                component={() => <Card data={this.state.data} />}
+                component={() => <Card data={this.state.data} limit={5}/>}
               />
               {/* <Card data={this.state.data} /> */}
             </div>

@@ -16,7 +16,7 @@ const CenterTabs = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [activeStep, setActiveStep] = React.useContext(RoleContext);
-  console.log("FROM TABS",activeStep)
+  console.log("FROM TABS", activeStep);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -36,18 +36,8 @@ const CenterTabs = (props) => {
             props.history.push("./request");
           }}
         />
-        <Tab
-          label="Service"
-          onClick={() => {
-            props.history.push("./service");
-          }}
-        />
-        <Tab
-          label="Payment"
-          onClick={() => {
-            props.history.push("./payment");
-          }}
-        />
+        <Tab label="Service" />
+        <Tab label="Payment" />
       </Tabs>
     </Paper>
   );
