@@ -60,10 +60,9 @@ export default function Card(props) {
               </div>
             </div>
             <div>
-              <p
+              <p className="card-description"
                 style={{
                   fontWeight: "lighter",
-                  width: "382px"
                 }}
               >
                 Check in here or scan customer's QR CODE to check in when the

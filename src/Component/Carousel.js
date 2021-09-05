@@ -46,17 +46,17 @@ const renderSlides = () =>
   sliderItems.map((elem) => (
     <div className="carousel container">
       <div className="row ">
-        <div className="carousel-img col-12 col-md ">
+        <div className="carousel-img col-6 col-md ">
           <img src={elem.img} style={{display:"inline"}}/>
         </div>
-        <div className="col-12 col-md " style={{ textAlign: "left" }}>
-          <h2>{elem.heading}</h2>
-          <h4>{elem.subheading}</h4>
+        <div className="col-6 col-md carousel-text" style={{ textAlign: "left" }}>
+          <p className="carousel-heading" style={{fontWeight:'bolder'}}>{elem.heading}</p>
+          <p className="carousel-subheading" style={{fontWeight:'bold'}}>{elem.subheading}</p>
           <p>{elem.description}</p>
-          <h6>
-            <span style={{fontWeight:'lighter',marginRight:"100px"}}>{elem.session}</span>
-            <span style={{color:"darkgoldenrod"}}>{elem.price}</span>
-          </h6>
+          <p className="carousel-tag">
+            <span style={{fontWeight:'lighter',marginRight:"20px"}}>{elem.session}</span>
+            <span style={{color:"darkgoldenrod",fontWeight:"bold"}}>{elem.price}</span>
+          </p>
         </div>
       </div>
     </div>
