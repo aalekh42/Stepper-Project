@@ -1,8 +1,10 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import { withRouter } from "react-router-dom";
+import PhoneIcon from "@material-ui/icons/Phone";
 
 const useStyles = makeStyles({
   root: {
@@ -10,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CenterTabs = ()=>{
+const CenterTabs = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -27,11 +29,26 @@ const CenterTabs = ()=>{
         textColor="primary"
         centered
       >
-        <Tab label="Request" />
-        <Tab label="Service" />
-        <Tab label="Payment" />
+        <Tab
+          label="Request"
+          onClick={() => {
+            props.history.push("./request");
+          }}
+        />
+        <Tab
+          label="Service"
+          onClick={() => {
+            props.history.push("./service");
+          }}
+        />
+        <Tab
+          label="Payment"
+          onClick={() => {
+            props.history.push("./payment");
+          }}
+        />
       </Tabs>
     </Paper>
   );
-}
-export default CenterTabs
+};
+export default withRouter(CenterTabs);
