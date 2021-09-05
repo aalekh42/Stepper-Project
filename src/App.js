@@ -6,6 +6,7 @@ import Card from "./Component/Card";
 import "./App.css";
 import data from "./data";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import {RoleProvider} from "./Context/RoleProvider";
 
 class App extends React.Component {
   constructor(props) {
@@ -23,17 +24,19 @@ class App extends React.Component {
       <div className="App">
         <Router>
           {/* <Route exact path="/help" component={() => <Carousel />} /> */}
-          <Navbar />
-          <CenterTabs />
-          <Carousel />
-          <div style={{ marginTop: "40px" }}>
-            <Route
-              exact
-              path="/request"
-              component={() => <Card data={this.state.data} />}
-            />
-            {/* <Card data={this.state.data} /> */}
-          </div>
+          <RoleProvider>
+            <Navbar />
+            <CenterTabs />
+            <Carousel />
+            <div style={{ marginTop: "40px" }}>
+              <Route
+                exact
+                path="/request"
+                component={() => <Card data={this.state.data} />}
+              />
+              {/* <Card data={this.state.data} /> */}
+            </div>
+          </RoleProvider>
         </Router>
       </div>
     );

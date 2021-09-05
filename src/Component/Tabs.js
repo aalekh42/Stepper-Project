@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { withRouter } from "react-router-dom";
-import PhoneIcon from "@material-ui/icons/Phone";
+import { RoleContext } from "../Context/RoleProvider";
 
 const useStyles = makeStyles({
   root: {
@@ -15,7 +15,8 @@ const useStyles = makeStyles({
 const CenterTabs = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  const [activeStep, setActiveStep] = React.useContext(RoleContext);
+  console.log("FROM TABS",activeStep)
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -23,7 +24,7 @@ const CenterTabs = (props) => {
   return (
     <Paper className={classes.root}>
       <Tabs
-        value={value}
+        value={activeStep}
         onChange={handleChange}
         indicatorColor="primary"
         textColor="primary"
