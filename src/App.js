@@ -7,6 +7,11 @@ import "./App.css";
 import data from "./data";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import {RoleProvider} from "./Context/RoleProvider";
+import store from "./store";
+import { Provider } from "react-redux";
+
+
+//Need to remove context and use store from redux here
 
 class App extends React.Component {
   constructor(props) {
